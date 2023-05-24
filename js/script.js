@@ -16,7 +16,7 @@ descriptografaBtn.addEventListener('click', function() {
     removeImagensParaExibirOutput();
     textOutput.innerHTML = `
     <p>${descripta(textInput.value)}</p>
-    <input class="btn" id="copiar-btn" type="button" value="copiar">`
+    <input class="btn" id="copiar-btn" type="button" value="Copiar">`
 });
 
 

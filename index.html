@@ -14,12 +14,13 @@
     </header>
     <main>
         <section class="funcionalidade-input">
+
+            <textarea class="text-input" id="text-input" placeholder="Digite o seu texto" pattern="[a-zA-Z0-9]+" title="Apenas letras e números são permitidos"  cols="30" rows="10"></textarea>
+        
+            <p class="aviso">
+                Apenas letras minúsculas e sem acento.
+            </p>
             <div>
-            
-                <textarea class="text-input" id="text-input" cols="30" rows="10" placeholder="Digite o seu texto"></textarea>
-                <p class="aviso">
-                    Apenas letras minúsculas e sem acento.
-                </p>
                 <input class="btn" id="criptografar-btn" type="button" value="Criptografar">
                 <input class="btn" id="descriptografar-btn" type="button" value="Descriptografar">
             </div>
@@ -30,7 +31,9 @@
         </section>
     </main>
     <footer>
-        <p>Wesley Bruno</p>
+        <p>Desenvolvido por <a href="">Wesley Bruno</a> <a href=""><img src="images/github.png" alt="logo github"></a>
+        </p>
+        
     </footer>
     <script src="js/script.js"></script>
 </body>

@@ -43,6 +43,7 @@ function validaEntrada(inputText) {
     let pattern = /^[a-z0-9\s]+$/;
 
     if (pattern.test(inputText.value.toLowerCase())) {
+        console.log("chegou aki")
       inputText.classList.remove('invalid');
       abilitaButao();
       console.log("Texto válido");
@@ -51,6 +52,8 @@ function validaEntrada(inputText) {
       desabilitaButao();
       console.log("Texto inválido");
     }
+
+    console.log("abriu funcao")
 }
 
 function abilitaButao() {

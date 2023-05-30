@@ -2,22 +2,31 @@ const textInput = document.getElementById("text-input");
 const textOutput = document.getElementById("text-output");
 const criptografaBtn = document.getElementById("criptografar-btn");
 const descriptografaBtn = document.getElementById("descriptografar-btn");
+let textoCopia;
 
 
 criptografaBtn.addEventListener('click', function() {
     removeImagensParaExibirOutput();
     textOutput.innerHTML = `
     <p>${criptografa(textInput.value)}</p>
-    <input class="btn" id="copiar-btn" type="button" value="copiar">
-    `
+    <input class="btn" id="copiar-btn" type="button" value="copiar">`
+    textoCopia = criptografa(textInput.value);
+    adicionaEventoCopiar();
 });
 
 descriptografaBtn.addEventListener('click', function() {
     removeImagensParaExibirOutput();
     textOutput.innerHTML = `
-    <p>${descripta(textInput.value)}</p>
+    <p id="txtSaida">${descripta(textInput.value)}</p>
     <input class="btn" id="copiar-btn" type="button" value="Copiar">`
+    textoCopia = descripta(textInput.value);
+    adicionaEventoCopiar(); 
 });
+
+function adicionaEventoCopiar() {
+    const copiarBtn = document.getElementById("copiar-btn");
+    copiarBtn.addEventListener('click', copiarTexto);
+}
 
 
 function removeImagensParaExibirOutput() {
@@ -29,7 +38,56 @@ function removeImagensParaExibirOutput() {
     });
 }
 
-console.log(descripta("haingzhoberufat"));
+
+function validaEntrada(inputText) {
+    let pattern = /^[a-z0-9\s]+$/;
+
+    if (pattern.test(inputText.value.toLowerCase())) {
+      inputText.classList.remove('invalid');
+      abilitaButao();
+      console.log("Texto válido");
+    } else {
+      inputText.classList.add('invalid');
+      desabilitaButao();
+      console.log("Texto inválido");
+    }
+}
+
+function abilitaButao() {
+    criptografaBtn.disabled = false;
+    criptografaBtn.classList.remove('invalid');
+    descriptografaBtn.disabled = false;
+    descriptografaBtn.classList.remove('invalid');
+}
+
+function desabilitaButao() {
+    criptografaBtn.disabled = true;
+    criptografaBtn.classList.add('invalid');
+    descriptografaBtn.disabled = true;
+    descriptografaBtn.classList.add('invalid');
+}
+
+function copiarTexto() {
+    // Seleciona o elemento <p> pelo ID
+    const elementoTexto = textoCopia;
+  
+    // Cria um objeto de área de transferência
+    const areaTransferencia = document.createElement("textarea");
+    areaTransferencia.value = elementoTexto;
+  
+    // Adiciona o objeto de área de transferência ao documento
+    document.body.appendChild(areaTransferencia);
+  
+    // Seleciona o texto dentro da área de transferência
+    areaTransferencia.select();
+  
+    // Copia o texto para a área de transferência
+    document.execCommand("copy");
+  
+    // Remove a área de transferência do documento
+    document.body.removeChild(areaTransferencia);
+  
+}
 
 function criptografa(textInput) {
     let strCriptada="";
@@ -107,14 +165,3 @@ function descripta(textInput) {
     }
     return strDescriptada;
 }
-
-
-
-/* 
-
-A letra "e" é convertida para "enter"
-A letra "i" é convertida para "imes"
-A letra "a" é convertida para "ai"
-A letra "o" é convertida para "ober"
-A letra "u" é convertida para "ufat"
-*/
